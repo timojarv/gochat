@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.3.2",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "css-loader": "^0.28.0",
+    "emojione": "^2.2.7",
+    "node-sass": "^4.5.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-loader": "^2.4.0",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "sass-loader": "^6.0.3",
+    "siimple": "^2.0.1",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.3.3"
+  }
+}
