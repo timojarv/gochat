@@ -1,3 +1,5 @@
-const ws = new WebSocket(`ws://${location.host}/ws`);
+import ReconnectingWebSocket from 'reconnecting-websocket'
+
+const ws = new ReconnectingWebSocket(`ws://${location.host}/ws`);
 
 export default ws

@@ -3,6 +3,7 @@ package bot
 import (
 	"regexp"
 	"fmt"
+	"time"
 	"github.com/timojarv/gochat/hub"
 	"github.com/timojarv/gochat/message"
 	"github.com/Knetic/govaluate"
@@ -28,6 +29,9 @@ func (bot *Bot) Send(msg message.Message) {
 	// Define the bots hail signature
 	hail := regexp.MustCompile("^@" + bot.Name)
 	eval := regexp.MustCompile("^@" + bot.Name + "\\s(.+)")
+	mention := regexp.MustCompile("@" + bot.Name)
+
+	time.Sleep(500 * time.Millisecond)
 
 	switch {
 		case eval.MatchString(msg.Message):
@@ -43,6 +47,8 @@ func (bot *Bot) Send(msg message.Message) {
 			}
 		case hail.MatchString(msg.Message):
 			bot.send("Hi, " + msg.Username + "! What can I do for you?")
+		case mention.MatchString(msg.Message):
+			bot.send("I'm here! :D")
 		default:
 	}
 }

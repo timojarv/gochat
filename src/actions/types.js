@@ -1,3 +1,4 @@
 export const MESSAGE_RECEIVE = "@@gochat/message/receive"
 export const MESSAGE_SEND = "@@gochat/message/send"
 export const MESSAGE_RESTORE = "@@gochat/message/restore"
+export const USERNAME_SET = "@@gochat/username/set"

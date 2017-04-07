@@ -1,5 +1,5 @@
 require("./main.scss")
-require("siimple")
+require("milligram")
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -11,7 +11,7 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 import ws from './services/websocket'
-import { handleMessage, restoreMessages } from './actions'
+import { handleMessage, restoreMessages, setUsername } from './actions'
 
 import App from './components/app'
 
@@ -28,6 +28,10 @@ ws.addEventListener("message", e => {
 // Restore old messages
 const storedMessages = localStorage.getItem("messages");
 if(storedMessages) store.dispatch(restoreMessages(storedMessages));
+
+// Restore username
+const username = localStorage.getItem("username");
+if(username) store.dispatch(setUsername(username));
 
 ReactDOM.render(
     <Provider store={store}>

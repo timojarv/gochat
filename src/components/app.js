@@ -1,13 +1,20 @@
 import React from 'react'
 
-import MessageBox from './messagebox'
+import MessageContainer from './messagecontainer'
 import SendField from './sendfield'
+import UsernameWidget from './username_widget'
 
 export default function App(props) {
     return (
         <div id="chat">
-            <MessageBox />
-            <SendField />
+            <header>
+                <strong className="brand">GoChat</strong>
+                <UsernameWidget />
+            </header>
+            <MessageContainer />
+            <footer>
+                <SendField />
+            </footer>
         </div>
     );
 }

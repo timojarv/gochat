@@ -24,7 +24,7 @@ class SendField extends React.Component {
         if(!this.state.message.length) return;
         this.props.sendMessage({
             message: this.state.message,
-            username: "reactor"
+            username: this.props.username
         })
         this.setState(state => ({ ...state, message: "" }));
         this.input.focus();
@@ -34,16 +34,17 @@ class SendField extends React.Component {
         return (
             <form onSubmit={this.handleSend} className="sendField">
                 <input
-                    className="siimple-input"
                     type="text"
                     onChange={this.handleChange}
                     value={this.state.message}
                     ref={input => this.input = input}
                 />
-                <button className="siimple-btn siimple-btn--blue">Send</button>
+                <button>Send</button>
             </form>
         );
     }
 }
 
-export default connect(null, actions)(SendField)
+const mapStateToProps = state => ({ username: state.username });
+
+export default connect(mapStateToProps, actions)(SendField)
