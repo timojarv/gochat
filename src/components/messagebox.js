@@ -1,5 +1,5 @@
 import React from 'react'
-import emojione from 'emojione'
+import emojione from '../services/emojione'
 import { connect } from 'react-redux'
 
 class MessageBox extends React.Component {

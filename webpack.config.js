@@ -1,3 +1,5 @@
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = {
     context: __dirname + "/src",
     entry: "./index.js",
@@ -23,5 +25,6 @@ module.exports = {
                 loader: "style-loader!css-loader!sass-loader"
             }
         ]
-    }
+    },
+    //plugins: [new BundleAnalyzerPlugin()]
 }
