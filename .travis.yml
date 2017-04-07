@@ -6,9 +6,9 @@ cache: yarn
 services:
   - docker
 install:
-  - yarn
   - nvm install 6
   - nvm use 6
+  - yarn
 script:
   - webpack -p
   - go build .
