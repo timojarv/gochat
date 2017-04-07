@@ -1,5 +1,16 @@
+sudo: required
 language: go
 go:
   - 1.8
-node:
+node_js:
   - 6
+services:
+  - docker
+install:
+  - yarn
+script:
+  - webpack -p
+  - go build .
+  - docker build -t timojarv/gochat .
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push timojarv/gochat
