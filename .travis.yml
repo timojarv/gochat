@@ -2,12 +2,13 @@ sudo: required
 language: go
 go:
   - 1.8
-node_js:
-  - 6
+cache: yarn
 services:
   - docker
 install:
   - yarn
+  - nvm install 6
+  - nvm use 6
 script:
   - webpack -p
   - go build .
