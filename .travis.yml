@@ -6,6 +6,7 @@ cache: yarn
 services:
   - docker
 install:
+  - go get
   - nvm install 6
   - nvm use 6
   - yarn
