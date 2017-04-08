@@ -11,7 +11,7 @@ install:
   - nvm use 6
   - yarn
 script:
-  - webpack -p
+  - ./node_modules/.bin/webpack -p
   - go build .
   - docker build -t timojarv/gochat .
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
