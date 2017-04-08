@@ -1,4 +1,4 @@
-FROM scratch
+FROM alpine
 MAINTAINER Timo Järventausta <timo.jaerv@gmail.com>
 
 EXPOSE 8000
