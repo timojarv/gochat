@@ -19,7 +19,7 @@ type ClientList map[Client]bool
 
 
 // Generate a hub (central message relay)
-func CreateHub() *Hub {
+func New() *Hub {
 	return &Hub{
 		clients: make(ClientList),
 		Broadcast: make(chan message.Message),

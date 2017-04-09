@@ -15,10 +15,10 @@ class MessageContainer extends React.Component {
         return (
             <div
                 key={i}
-                className={"message" + (message.username == this.props.username ? " own" : "")}
+                className={"message" + (message.sender == this.props.username ? " own" : "")}
             >
-                <strong className="sender">{message.username}: </strong>
-                <Emojione svg>{message.message}</Emojione>
+                <strong className="sender">{message.sender}: </strong>
+                <Emojione svg>{message.body}</Emojione>
             </div>
         );
     }

@@ -1,4 +1,4 @@
-package bot
+package gopher
 
 import (
 	"regexp"
@@ -9,16 +9,14 @@ import (
 	"github.com/Knetic/govaluate"
 )
 
+const name string = "gopher"
+
 type Bot struct {
-	Name string
 	hub *hub.Hub
 }
 
-func CreateBot(name string, hub *hub.Hub) *Bot {
-	bot := &Bot{
-		Name: name,
-		hub: hub,
-	}
+func Register(hub *hub.Hub) *Bot {
+	bot := &Bot{hub}
 
 	hub.Register <- bot
 
@@ -27,15 +25,15 @@ func CreateBot(name string, hub *hub.Hub) *Bot {
 
 func (bot *Bot) Send(msg message.Message) {
 	// Define the bots hail signature
-	hail := regexp.MustCompile("^@" + bot.Name)
-	eval := regexp.MustCompile("^@" + bot.Name + "\\s(.+)")
-	mention := regexp.MustCompile("@" + bot.Name)
+	hail := regexp.MustCompile("^@" + name)
+	eval := regexp.MustCompile("^@" + name + "\\s(.+)")
+	mention := regexp.MustCompile("@" + name)
 
 	time.Sleep(500 * time.Millisecond)
 
 	switch {
-		case eval.MatchString(msg.Message):
-			str := eval.FindStringSubmatch(msg.Message)[1]
+		case eval.MatchString(msg.Body):
+			str := eval.FindStringSubmatch(msg.Body)[1]
 			expr, err := govaluate.NewEvaluableExpression(str)
 			if err != nil { bot.fail(); return }
 
@@ -45,19 +43,16 @@ func (bot *Bot) Send(msg message.Message) {
 			} else {
 				bot.send(fmt.Sprintf("%v", res))
 			}
-		case hail.MatchString(msg.Message):
-			bot.send("Hi, " + msg.Username + "! What can I do for you?")
-		case mention.MatchString(msg.Message):
+		case hail.MatchString(msg.Body):
+			bot.send("Hi, " + msg.Sender + "! What can I do for you?")
+		case mention.MatchString(msg.Body):
 			bot.send("I'm here! :D")
 		default:
 	}
 }
 
 func (bot *Bot) send(msg string) {
-	bot.hub.Broadcast <- message.Message{
-		Username: bot.Name,
-		Message: msg,
-	}
+	bot.hub.Broadcast <- message.New(name, msg)
 }
 
 func (bot *Bot) fail() {

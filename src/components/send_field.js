@@ -22,10 +22,7 @@ class SendField extends React.Component {
     handleSend(e) {
         e.preventDefault()
         if(!this.state.message.length) return;
-        this.props.sendMessage({
-            message: this.state.message,
-            username: this.props.username
-        })
+        this.props.sendMessage(this.state.message)
         this.setState(state => ({ ...state, message: "" }));
         this.input.focus();
     }
