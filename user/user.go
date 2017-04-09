@@ -3,6 +3,7 @@ package user
 
 import (
 	"errors"
+	"os"
 	"crypto/sha256"
 	"encoding/hex"
 	"gopkg.in/mgo.v2"
@@ -23,7 +24,9 @@ type User struct {
 }
 
 func init() {
-	session, err := mgo.Dial("localhost")
+	addr, ok := os.LookupEnv("MONGODB_ADDR")
+	if !ok { addr = "localhost" }
+	session, err := mgo.Dial(addr)
 	if err != nil {
 		panic(err)
 	}
