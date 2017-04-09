@@ -54,7 +54,7 @@ func handleLogin(res http.ResponseWriter, req *http.Request) {
 	// Find user with specified name
 	User, err := user.FindByUsername(data.Username)
 
-	if err.Error() == "not found" {
+	if err != nil && err.Error() == "not found" {
 		User = user.New(data.Username, data.Password)
 		err = User.Save()
 	}
