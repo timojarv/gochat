@@ -8,7 +8,7 @@ export default function Chat(props) {
     return (
         <div id="chat">
             <header>
-                <strong className="brand">GoChat</strong>
+                <strong className="brand">RatChat</strong>
                 <UsernameWidget username={props.username} />
             </header>
             <MessageContainer />
